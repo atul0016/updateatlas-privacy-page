@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Atlas Privacy Policy</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.15em; margin-top: 1.8em; }
+    .effective { color: #666; font-size: 0.9em; margin-bottom: 2em; }
+    code { background: #f0f0f0; padding: 1px 5px; border-radius: 4px; font-size: 0.92em; }
+  </style>
+</head>
+<body>
+  <h1>Update Atlas Privacy Policy</h1>
+  <p class="effective">Effective Date: September 26, 2026</p>
+
+  <p>Webspace IN Private Limited ("we," "us," or "our") built Update Atlas as an update-detection utility for macOS. This policy describes exactly what Update Atlas stores, what it sends over the network and to whom, and how the optional sync add-on works.</p>
+
+  <h2>The short version</h2>
+  <p>Update Atlas runs entirely on your Mac. The list of apps it detects, their versions, your ignore/defer/pin preferences, and any verification results are stored locally in this app's own sandboxed application data folder -- never on an Update-Atlas-operated server, because there is no Update-Atlas-operated server. We do not use analytics or tracking of any kind. Update Atlas makes outbound network requests only to: (1) Apple, to confirm a purchase or subscription; (2) the specific Sparkle update-feed URL each Sparkle-updating app already publishes in its own Info.plist, to check for a newer version; (3) GitHub's public Releases API, only for repositories you've configured or that match a small built-in list, and only if you subscribe to the Scheduled Scans & Multi-Mac Inventory add-on; and (4), only if you enable that same add-on, a snapshot written into your own iCloud Drive.</p>
+
+  <h2>Update Atlas never installs, downloads, or runs anything on your behalf</h2>
+  <p>This is important enough to say plainly and first: Update Atlas only detects available updates and opens the update source's own official page for you (the app's vendor page, the Mac App Store, or a GitHub release page) -- or, for Homebrew, shows you the exact <code>brew upgrade</code> command to copy and run yourself. It never downloads an installer, never executes one, and never runs <code>brew upgrade</code>/<code>brew install</code> or any command requiring administrator privileges on its own.</p>
+
+  <h2>What is stored, and where</h2>
+  <ul>
+    <li><strong>Detected app inventory</strong> -- the display name, bundle identifier, installed version, and file path of each app found under <code>/Applications</code> and <code>~/Applications</code>, plus whichever update source (App Store, Sparkle, Homebrew, GitHub) applies to it. Stored locally only, unless you enable sync (see below).</li>
+    <li><strong>Your preferences</strong> -- which apps you've ignored, deferred, or pinned to a specific version, and any GitHub repository or Homebrew name you've associated with an app. Stored locally only, unless you enable sync.</li>
+    <li><strong>Verification results</strong> -- the code-signature and notarization status of an app, produced by running Apple's own <code>codesign</code> and <code>spctl</code> command-line tools against that app's bundle on your Mac. Nothing here is transmitted anywhere; it's a local check of a file already on your disk.</li>
+  </ul>
+
+  <h2>Scanning and verification permissions</h2>
+  <p>Update Atlas reads the <code>Info.plist</code> metadata file inside each installed app's bundle (its version numbers and, if present, its Sparkle feed URL) and runs Apple's own <code>codesign</code>/<code>spctl</code> tools and, for the Homebrew add-on, the <code>brew</code> command-line tool -- all read-only inspection of files and metadata already on your Mac. It does not read any other app's user data, documents, or settings.</p>
+
+  <h2>Scheduled Scans & Multi-Mac Inventory (optional, subscription-only)</h2>
+  <p>If -- and only if -- you subscribe to this add-on, Update Atlas writes a snapshot of your detected-app inventory into this app's own iCloud Drive container on your Mac. From that point on, Apple's own iCloud service is what replicates that file to your other Macs -- the same way iCloud Drive syncs any other file you keep in it. This same subscription also turns on the Homebrew and GitHub adapters, and lets Update Atlas run a scan automatically on a timer you choose instead of only when you click Scan.</p>
+  <ul>
+    <li>This snapshot is plain JSON, not encrypted -- detected app names, versions, and sources are not especially sensitive, unlike a password vault or clipboard history.</li>
+    <li>Turning the subscription off (or letting it lapse) simply stops Update Atlas from reading or writing that file, from querying Homebrew/GitHub, and from scanning on a timer -- your local inventory and preferences stay fully intact, and manual scanning keeps working exactly as it does on the base tier.</li>
+  </ul>
+
+  <h2>Purchases and the subscription</h2>
+  <p>The one-time unlock and the optional Scheduled Scans & Multi-Mac Inventory subscription are both handled entirely by Apple through the App Store's standard in-app purchase system (StoreKit). Update Atlas asks Apple whether you own the unlock or have an active subscription and receives a yes/no answer; we do not receive or store your payment information, which is handled exclusively by Apple under Apple's own privacy policy.</p>
+
+  <h2>What Update Atlas does not do</h2>
+  <ul>
+    <li>It does not use analytics, advertising, or tracking SDKs of any kind</li>
+    <li>It does not require or support any Update Atlas user account or sign-in</li>
+    <li>It does not download, install, or execute an update, an installer, or any elevated/<code>sudo</code> command on your behalf</li>
+    <li>It does not read your browsing history, documents, or any other app's private data</li>
+    <li>It does not share any information with third parties, beyond the specific, narrow requests described above (Apple for purchases, a Sparkle feed URL an app itself publishes, or the public GitHub API for a repository you've configured)</li>
+  </ul>
+
+  <h2>Children's privacy</h2>
+  <p>Update Atlas is a general-purpose utility for Mac users and is not directed at children. We do not knowingly collect data from anyone, including children, because we do not collect data from anyone at all.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If Update Atlas's data practices ever change, we will update this policy and revise the effective date above.</p>
+
+  <h2>Contact us</h2>
+  <p>Questions about this policy can be sent to: <a href="mailto:com.webspacein@gmail.com">com.webspacein@gmail.com</a></p>
+</body>
+</html>
